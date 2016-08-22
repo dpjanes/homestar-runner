@@ -3,7 +3,6 @@
     "@base": "file:///runner",
     "@vocab": "file:///runner#",
     "iot": "https://iotdb.org/pub/iot#",
-    "schema": "http://schema.org/",
     "iot-purpose": "https://iotdb.org/pub/iot-purpose#",
     "iot:purpose": {
       "@id": "https://iotdb.org/pub/iot#purpose",
@@ -13,6 +12,7 @@
       "@id": "https://iotdb.org/pub/iot#type",
       "@type": "@id"
     },
+    "schema": "http://schema.org/",
     "iot-unit": "https://iotdb.org/pub/iot-unit#",
     "iot:unit": {
       "@id": "https://iotdb.org/pub/iot#unit",
@@ -21,55 +21,56 @@
   },
   "@id": "",
   "@type": "iot:Model",
-  "schema:name": "Runner",
-  "schema:description": "Runner",
   "iot:attribute": [
     {
-      "@type": "iot:Attribute",
       "@id": "#load-average",
-      "schema:name": "load-average",
+      "@type": "iot:Attribute",
+      "iot:actuator": true,
       "iot:purpose": "iot-purpose:resource.load-average",
+      "iot:read": true,
+      "iot:sensor": true,
       "iot:type": "iot:type.number",
-      "iot:read": true,
-      "iot:sensor": true,
-      "iot:write": false,
-      "iot:actuator": false
+      "iot:write": true,
+      "schema:name": "load-average"
     },
     {
-      "@type": "iot:Attribute",
       "@id": "#available-memory",
-      "schema:name": "free-memory",
+      "@type": "iot:Attribute",
+      "iot:actuator": true,
       "iot:purpose": "iot-purpose:resource.memory.available",
-      "iot:unit": "iot-unit:math.constant.byte",
-      "iot:type": "iot:type.integer",
       "iot:read": true,
       "iot:sensor": true,
-      "iot:write": false,
-      "iot:actuator": false
+      "iot:type": "iot:type.integer",
+      "iot:unit": "iot-unit:math.constant.byte",
+      "iot:write": true,
+      "schema:name": "free-memory"
     },
     {
-      "@type": "iot:Attribute",
       "@id": "#free-memory",
-      "schema:name": "free-memory",
+      "@type": "iot:Attribute",
+      "iot:actuator": true,
       "iot:purpose": "iot-purpose:resource.memory.free",
-      "iot:unit": "iot-unit:math.constant.byte",
-      "iot:type": "iot:type.integer",
       "iot:read": true,
       "iot:sensor": true,
-      "iot:write": false,
-      "iot:actuator": false
+      "iot:type": "iot:type.integer",
+      "iot:unit": "iot-unit:math.constant.byte",
+      "iot:write": true,
+      "schema:name": "free-memory"
     },
     {
-      "@type": "iot:Attribute",
       "@id": "#uptime",
-      "schema:name": "uptime",
+      "@type": "iot:Attribute",
+      "iot:actuator": true,
       "iot:purpose": "iot-purpose:resource.uptime",
-      "iot:unit": "iot-unit:time.si.second",
-      "iot:type": "iot:type.integer",
       "iot:read": true,
       "iot:sensor": true,
-      "iot:write": false,
-      "iot:actuator": false
+      "iot:type": "iot:type.integer",
+      "iot:unit": "iot-unit:time.si.second",
+      "iot:write": true,
+      "schema:name": "uptime"
     }
-  ]
+  ],
+  "iot:model-id": "runner",
+  "schema:description": "Runner",
+  "schema:name": "Runner"
 }

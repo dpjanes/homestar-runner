@@ -11,4 +11,7 @@ var iotdb = require("iotdb");
 exports.binding = {
     bridge: require('../RunnerBridge').Bridge,
     model: require('./runner.json'),
+    matchd: {
+        'iot:vendor.type': 'runner',
+    },
 };

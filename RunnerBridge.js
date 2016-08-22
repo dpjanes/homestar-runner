@@ -24,6 +24,7 @@
 
 const iotdb = require('iotdb');
 const _ = iotdb._;
+const os = require('os')
 
 const logger = iotdb.logger({
     name: 'homestar-runner',
@@ -75,10 +76,17 @@ RunnerBridge.prototype.discover = function () {
      *  The first argument should be self.initd, the second
      *  the thing that you do work with
      */
+
+    self.discovered(new RunnerBridge(self.initd, {
+        'iot:vendor.type': 'runner',
+    }));
+
+    /*
     const s = self._runner();
     s.on('something', function (native) {
         self.discovered(new RunnerBridge(self.initd, native));
     });
+    */
 };
 
 /**
@@ -188,6 +196,33 @@ RunnerBridge.prototype.pull = function () {
     if (!self.native) {
         return;
     }
+
+    var d = {};
+
+    if (self.native['iot:vendor.type'] === 'runner') {
+        d["load-average"] = os.loadavg()[0];
+        d["available-memory"] = os.totalmem();
+        d["free-memory"] = os.freemem();
+        d["uptime"] = os.uptime();
+    } else if (self.native['iot:vendor.type'] === 'disk') {
+    } else if (self.native['iot:vendor.type'] === 'cpu') {
+    }
+
+
+    /*
+    d.arch = os.arch();
+    d.cpus = os.cpus();
+    d.endianness = os.endianness();
+    d.homedir = os.homedir();
+    d.hostname = os.hostname();
+    d.networkInterfaces = os.networkInterfaces();
+    d.platform = os.platform();
+    d.release = os.release();
+    d.tmpdir = os.tmpdir();
+    d.type = os.type();
+    */
+
+    self.pulled(d);
 };
 
 /* --- state --- */
@@ -201,15 +236,28 @@ RunnerBridge.prototype.meta = function () {
         return;
     }
 
-    return {
-        "iot:thing-id": _.id.thing_urn.unique("Runner", self.native.uuid, self.initd.number),
-        "schema:name": self.native.name || "Runner",
+    const metad = _.d.compose.shallow(self.native);
 
-        // "iot:thing-number": self.initd.number,
-        // "iot:device-id": _.id.thing_urn.unique("Runner", self.native.uuid),
-        // "schema:manufacturer": "",
-        // "schema:model": "",
-    };
+    if (self.native['iot:vendor.type'] === 'runner') {
+        const rd = iotdb.keystore().get("/homestar/runner");
+        const mapd = {
+            "/name": "schema:name",
+            "/location/latitude": "schema:latitude",
+            "/location/longitude": "schema:longitude",
+            "/location/locality": "schema:locality",
+            "/location/country": "schema:country",
+            "/location/region": "schema:region",
+            "/location/timezone": "schema:timezone",
+        };
+        for (var key in mapd) {
+            var value = _.d.get(rd, key);
+            if (value) {
+                metad[mapd[key]] = value;
+            }
+        }
+    }
+
+    return metad;
 };
 
 /**
