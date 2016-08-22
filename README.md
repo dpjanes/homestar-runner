@@ -5,7 +5,14 @@
 
 # Installation
 
+* [Read this first](https://github.com/dpjanes/node-iotdb/blob/master/docs/install.md)
+
 Then:
 
     $ npm install homestar-runner
+
+# Use
+
+    const iotdb = require("iotdb")
+    iotdb.use("homestar-runner")
 
