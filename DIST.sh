@@ -6,7 +6,6 @@
 #   2016-05-21
 #
 
-exit 0
 PACKAGE=homestar-runner
 DIST_ROOT=/var/tmp/.dist.$$
 
@@ -32,6 +31,7 @@ echo "=================="
 
     tar cf - \
         --exclude "node_modules" \
+        --exclude "Gruntfile.js" \
         README.md LICENSE \
         homestar.json package.json \
         RunnerBridge.js index.js \
