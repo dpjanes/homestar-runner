@@ -4,19 +4,19 @@
         "url": "https://github.com/dpjanes/homestar-runner/issues"
     }, 
     "dependencies": {
-        "iotdb": ">=0.6.3"
+        "iotdb": ">=3.0.0"
     }, 
-    "description": "IOTDB Bridge for Home☆Star Runner", 
+    "description": "IOTDB Bridge for Home\u2606Star Runner", 
     "devDependencies": {
-        "grunt": "~0.4.5", 
-        "grunt-contrib-jshint": "~0.10.0", 
-        "grunt-contrib-nodeunit": "~0.2.0", 
-        "grunt-contrib-uglify": "~0.5.0", 
-        "grunt-contrib-watch": "~0.5.0", 
-        "grunt-jsbeautifier": "^0.2.7", 
-        "jshint-stylish": "~0.1.3", 
-        "load-grunt-tasks": "~0.2.0", 
-        "request": "^2.36.0"
+        "grunt": "~1.0.1", 
+        "grunt-contrib-jshint": "~1.0.0", 
+        "grunt-contrib-nodeunit": "~1.0.0", 
+        "grunt-contrib-uglify": "~2.0.0", 
+        "grunt-contrib-watch": "~1.0.0", 
+        "grunt-jsbeautifier": "~0.2.13", 
+        "jshint-stylish": "~2.2.1", 
+        "load-grunt-tasks": "~3.5.2", 
+        "request": "~2.74.0"
     }, 
     "homepage": "https://homestar.io", 
     "homestar": {}, 
@@ -31,5 +31,5 @@
     "scripts": {
         "test": "grunt"
     }, 
-    "version": "0.0.0"
+    "version": "0.0.1"
 }
