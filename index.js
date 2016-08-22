@@ -26,8 +26,3 @@ exports.Bridge = require('./RunnerBridge').Bridge;
 exports.bindings = [
     require('./models/Runner').binding,
 ];
-
-exports.iotdb = require("iotdb");
-exports.wrap = function(name, initd) {
-    return exports.iotdb.make_wrap(name, exports.bindings, initd);
-};
