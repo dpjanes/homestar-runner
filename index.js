@@ -26,3 +26,5 @@ exports.Bridge = require('./RunnerBridge').Bridge;
 exports.bindings = [
     require('./models/Runner').binding,
 ];
+
+exports.module_folder = __dirname;
