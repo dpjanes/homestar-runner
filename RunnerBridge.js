@@ -54,10 +54,6 @@ const RunnerBridge = function (initd, native) {
 
 RunnerBridge.prototype = new iotdb.Bridge();
 
-RunnerBridge.prototype.name = function () {
-    return "RunnerBridge";
-};
-
 /* --- lifecycle --- */
 
 /**
